@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.wuwind.common.RouterPathConst;
 import com.wuwind.zrouter_annotation.ZRoute;
+import com.wuwind.zrouter_api.ZRouter;
 
 
 /**
@@ -50,7 +51,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bd = new Bundle();
                 bd.putString("from", "首页");
-//                ZRouter.getInstance().build(RouterPathConst.PATH_FRAGMENT_TAB4).navigation();
+                ZRouter.getInstance().build(RouterPathConst.PATH_FRAGMENT_TAB4).navigation();
             }
         });
 
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment {
         mBtnToOtherActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ZRouter.getInstance().build(RouterPathConst.PATH_ACTIVITY_OTHER).navigation();
+                ZRouter.getInstance().build(RouterPathConst.PATH_ACTIVITY_OTHER).navigation();
             }
         });
 

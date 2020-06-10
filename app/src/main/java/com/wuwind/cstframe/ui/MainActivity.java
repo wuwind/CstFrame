@@ -12,7 +12,7 @@ import com.wuwind.cstframe.R;
 import com.wuwind.cstframe.ui.bottom.BottomAdapter;
 import com.wuwind.cstframe.ui.bottom.TabTitle;
 import com.wuwind.cstframe.util.DrawableUtil;
-import com.wuwind.zrouter_annotation.ZRoute;
+import com.wuwind.zrouter_api.ZRouter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@ZRoute("/ere/ewr/")
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_bottom)
@@ -32,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //初始化Fragment路由的相关参数
 
-//        ZRouter.getInstance().initFragmentParameters(this, R.id.content_frame, new ZRouter.OnFragmentChangedLis() {
-//            @Override
-//            public void setTab(String routePath) {
-//                mAdapter.setSelection(findPositionByRoutePath(routePath));//找到这个routePath对应的position，然后切换下面的tab
-//            }
-//        });//尼玛，这一段不影响编译，但是这里红色波浪线看着很烦啊 TODO ?!!!?!?! 怎么解决呢？！
+        ZRouter.getInstance().initFragmentParameters(this, R.id.content_frame, new ZRouter.OnFragmentChangedLis() {
+            @Override
+            public void setTab(String routePath) {
+                mAdapter.setSelection(findPositionByRoutePath(routePath));//找到这个routePath对应的position，然后切换下面的tab
+            }
+        });//尼玛，这一段不影响编译，但是这里红色波浪线看着很烦啊 TODO ?!!!?!?! 怎么解决呢？！
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initContentFrame() {
         if (titleObjectList != null && titleObjectList.size() > 0) {
-//            ZRouter.getInstance().build(titleObjectList.get(0).getRoutePath()).navigation();
+            ZRouter.getInstance().build(titleObjectList.get(0).getRoutePath()).navigation();
 //            Fragment fragment = (Fragment)ARouter.getInstance().build(titleObjectList.get(0).getRoutePath()).navigation();
 //            getSupportFragmentManager().beginTransaction().replace(
 //                    R.id.content_frame,fragment).commit();
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(int position, String fragmentRoutePath) {
                 mAdapter.setSelection(position);
                 if (!TextUtils.isEmpty(fragmentRoutePath)) {
-//                    ZRouter.getInstance().build(fragmentRoutePath).navigation();
+                    ZRouter.getInstance().build(fragmentRoutePath).navigation();
                 }
             }
         });

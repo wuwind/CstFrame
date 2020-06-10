@@ -53,10 +53,14 @@ dependencies {
 //    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 
     implementation project(':function:common')
-    implementation project(path: ':zrouter-api')
-    annotationProcessor project(':zrouter-compiler')
+    implementation project(path: ':zrouter:zrouter-api')
+    annotationProcessor project(':zrouter:zrouter-compiler')
 
     if (isModule.toBoolean()) {
         implementation project(':business:fragment_home')
+        implementation project(':business:activity_other')
+        implementation project(':business:fragment_mine')
+        implementation project(':business:fragment_test')
+        implementation project(':business:fragment_test2')
     }
 }
