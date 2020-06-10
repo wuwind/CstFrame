@@ -5,14 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.wuwind.common.RouterPathConst;
+import com.wuwind.zrouter_annotation.ZRoute;
 
 
 /**
@@ -20,7 +19,7 @@ import com.wuwind.common.RouterPathConst;
  * 并且这个首页的Fragment 业务将会与其他业务完全隔离，这是从代码层面完全隔离，
  * 支持独立调试开发,也支持HomeFragment作为零件，附加在外壳上
  */
-@Route(path = RouterPathConst.PATH_FRAGMENT_TAB1)
+@ZRoute(RouterPathConst.PATH_FRAGMENT_TAB1)
 public class HomeFragment extends Fragment {
 
     private Button mBtnToMine;

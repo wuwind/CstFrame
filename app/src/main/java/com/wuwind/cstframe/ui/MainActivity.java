@@ -4,16 +4,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.wuwind.common.RouterPathConst;
 import com.wuwind.cstframe.R;
 import com.wuwind.cstframe.ui.bottom.BottomAdapter;
 import com.wuwind.cstframe.ui.bottom.TabTitle;
 import com.wuwind.cstframe.util.DrawableUtil;
+import com.wuwind.zrouter_annotation.ZRoute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@ZRoute("/ere/ewr/")
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_bottom)
@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
     private void initContentFrame() {
         if (titleObjectList != null && titleObjectList.size() > 0) {
 //            ZRouter.getInstance().build(titleObjectList.get(0).getRoutePath()).navigation();
-            Fragment fragment = (Fragment)ARouter.getInstance().build(titleObjectList.get(0).getRoutePath()).navigation();
-            getSupportFragmentManager().beginTransaction().replace(
-                    R.id.content_frame,fragment).commit();
+//            Fragment fragment = (Fragment)ARouter.getInstance().build(titleObjectList.get(0).getRoutePath()).navigation();
+//            getSupportFragmentManager().beginTransaction().replace(
+//                    R.id.content_frame,fragment).commit();
         }
     }
 

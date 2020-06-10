@@ -33,8 +33,8 @@ import javax.lang.model.util.Types;
 
 
 //注册APT
-@AutoService(Processor.class)
 //指定apt支持的java版本
+@AutoService(Processor.class)
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class RouterProcessor extends AbstractProcessor {
 
@@ -55,6 +55,7 @@ public class RouterProcessor extends AbstractProcessor {
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
+        System.out.println("----------RouterProcessor---init-------------");
         mFiler = processingEnvironment.getFiler();
         Map<String, String> options = processingEnvironment.getOptions();
         moduleName = options.get("moduleName");
@@ -105,7 +106,6 @@ public class RouterProcessor extends AbstractProcessor {
 
         // Map<String,RouteMeta> routeComm
         ParameterSpec parameterSpec = ParameterSpec.builder(parameterizedTypeName, "routeComm").build();
-
         // public void onLoad(Map<String,RouteMeta> routeComm)
         MethodSpec.Builder loadPath = MethodSpec.methodBuilder("onLoad")
                 .addAnnotation(Override.class)
