@@ -5,16 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.wuwind.common.RouterPathConst;
+import com.wuwind.zrouter_annotation.Autowired;
 import com.wuwind.zrouter_annotation.ZRoute;
 import com.wuwind.zrouter_api.ZRouter;
-
-import com.wuwind.business_3.services.api.MineOpenServiceApi;
 
 
 /**
@@ -29,6 +29,9 @@ public class HomeFragment extends Fragment {
     private Button mBtnToOtherActivity;
     private Button mBtnCallMine;
 
+    @Autowired
+    public String name;
+
     public HomeFragment() {
     }
 
@@ -41,6 +44,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ZRouter.getInstance().inject(this);
     }
 
     @Nullable
@@ -65,13 +69,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        TextView tvDes = root.findViewById(R.id.tv_des);
+        tvDes.setText(name);
         mBtnCallMine = root.findViewById(R.id.btn_call_mine);
         mBtnCallMine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //执行其他模块的业务逻辑
                 //方式1
-                String accountNo = ZRouter.getInstance().navigation(MineOpenServiceApi.class).accountNo();
+//                String accountNo = ZRouter.getInstance().navigation(MineOpenServiceApi.class).accountNo();
 //                Toast.makeText(getActivity(), accountNo, Toast.LENGTH_LONG).show();
 //                //方式2
 //                MineOpenServiceApi api = ZRouter.getInstance().navigation("MineOpenServiceApi");

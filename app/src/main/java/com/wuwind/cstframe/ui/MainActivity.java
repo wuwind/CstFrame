@@ -7,14 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alibaba.android.arouter.facade.annotation.Autowired;
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.wuwind.common.RouterPathConst;
 import com.wuwind.cstframe.R;
 import com.wuwind.cstframe.ui.bottom.BottomAdapter;
 import com.wuwind.cstframe.ui.bottom.TabTitle;
 import com.wuwind.cstframe.util.DrawableUtil;
+import com.wuwind.zrouter_annotation.Autowired;
 import com.wuwind.zrouter_api.ZRouter;
 
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@Route(path = "/ar/pa")
+//@ZRoute(path = "/ar/pa")
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_bottom)
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //初始化Fragment路由的相关参数
 
-        ARouter.getInstance().inject(this);
+//        ARouter.getInstance().inject(this);
 
         ZRouter.getInstance().initFragmentParameters(this, R.id.content_frame, new ZRouter.OnFragmentChangedLis() {
             @Override
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initContentFrame() {
         if (titleObjectList != null && titleObjectList.size() > 0) {
-            ZRouter.getInstance().build(titleObjectList.get(0).getRoutePath()).navigation();
+            ZRouter.getInstance().build(titleObjectList.get(0).getRoutePath()).withString("name", "123").navigation();
 //            Fragment fragment = (Fragment)ARouter.getInstance().build(titleObjectList.get(0).getRoutePath()).navigation();
 //            getSupportFragmentManager().beginTransaction().replace(
 //                    R.id.content_frame,fragment).commit();
@@ -141,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
                 R.string.tag_name_tab4,
                 R.color.home_tab_text_selector,
                 DrawableUtil.getStateListDrawable(this, R.mipmap.a_tabbar_tab4, R.mipmap.a_tabbar_me_p)));
-
-
+//        ARouter.getInstance().inject(this);
+//        ARouter.getInstance().build(RouterPathConst.PATH_FRAGMENT_TAB4).withString("name","123").navigation();
         return titleObjectList;
     }
 

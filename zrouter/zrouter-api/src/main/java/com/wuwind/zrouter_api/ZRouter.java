@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.wuwind.zrouter_api.core.LogisticsCenter;
+import com.wuwind.zrouter_annotation.facade.service.AutowiredService;
 
 public class ZRouter {
 
@@ -94,7 +95,7 @@ public class ZRouter {
     //build出一个Postcard
     public Postcard build(String path) {
         if (TextUtils.isEmpty(path)) {
-            throw new RuntimeException("error:传入的path怎么可以为空呢？小老弟!");
+            throw new RuntimeException("error:path is empty!!!");
         } else {
             return new Postcard(path);
         }
@@ -166,6 +167,7 @@ public class ZRouter {
                 throw new RuntimeException("没找到对应的activity，请检查路由寻址标识是否写错");
         }
         final Intent intent = new Intent(mContext, cls);
+        intent.putExtras(postcard.getExtras());
         if (Postcard.FLAG_DEFAULT != postcard.getFlag()) {//如果不是初始值，也就是说，flag值被更改过，那就用更改后的值
             intent.setFlags(postcard.getFlag());
         } else {//如果沒有设定启动模式，即 flag值没有被更改，就用常规模式启动
@@ -198,7 +200,7 @@ public class ZRouter {
             throw new RuntimeException("反射创建fragment失败");
         }
 
-        fragment.setArguments(postcard.getBundle());
+        fragment.setArguments(postcard.getExtras());
 
         //如果参数fragment就是当前这个fragment，那就不用行动了
         if (mCurrentFragment != null && fragment.getClass().getSimpleName().equals(mCurrentFragment.getClass().getSimpleName())) {
@@ -245,6 +247,13 @@ public class ZRouter {
             return fragment;
         }
         return null;
+    }
+
+    public static void inject(Object thiz) {
+        AutowiredService autowiredService = ((AutowiredService) getInstance().build("/arouter/service/autowired").navigation());
+        if (null != autowiredService) {
+            autowiredService.autowire(thiz);
+        }
     }
 }
 

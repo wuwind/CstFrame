@@ -17,8 +17,6 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.Filer;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
@@ -28,21 +26,19 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
-import javax.lang.model.util.Elements;
-import javax.lang.model.util.Types;
 
 
 //注册APT
 //指定apt支持的java版本
 @AutoService(Processor.class)
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-public class RouterProcessor extends AbstractProcessor {
+public class RouterProcessor extends BaseProcessor {
 
     //文件工具
-    private Filer mFiler;
-    private String moduleName;
-    private Elements elementUtils;//元素辅助类
-    private Types typeUtils;//类辅助类
+//    private Filer mFiler;
+//    private String moduleName;
+//    private Elements elementUtils;//元素辅助类
+//    private Types typeUtils;//类辅助类
 
 
     /**
@@ -55,12 +51,12 @@ public class RouterProcessor extends AbstractProcessor {
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
-        System.out.println("----------RouterProcessor---init-------------");
-        mFiler = processingEnvironment.getFiler();
-        Map<String, String> options = processingEnvironment.getOptions();
-        moduleName = options.get("moduleName");
-        elementUtils = processingEnvironment.getElementUtils();
-        typeUtils = processingEnvironment.getTypeUtils();
+        logger.info(">>> RouterProcessor init. <<<");
+//        mFiler = processingEnvironment.getFiler();
+//        Map<String, String> options = processingEnvironment.getOptions();
+//        moduleName = options.get("moduleName");
+//        elementUtils = processingEnvironment.getElementUtils();
+//        typeUtils = processingEnvironment.getTypeUtils();
     }
 
     /**
@@ -118,7 +114,7 @@ public class RouterProcessor extends AbstractProcessor {
         TypeMirror typeFragment = elementUtils.getTypeElement(RouteType.FRAGMENT.getClassName()).asType();//
         TypeMirror typeFragmentV4 = elementUtils.getTypeElement(RouteType.FRAGMENT_V4.getClassName()).asType();//
         TypeMirror typeProvider = elementUtils.getTypeElement(RouteType.PROVIDER.getClassName()).asType();//
-        typeProvider = typeUtils.erasure(typeProvider);
+        typeProvider = types.erasure(typeProvider);
         ClassName routeTypeClassName = ClassName.get(RouteType.class);
         RouteType routeType;
         for (Element element : routeElements) {
@@ -127,13 +123,13 @@ public class RouterProcessor extends AbstractProcessor {
 
 
             //这里要进行判断，因为要知道当前使用这个注解的是Activity还是Fragment
-            if (typeUtils.isSubtype(tm, typeActivity)) {//参数1，是不是参数2的子类
+            if (types.isSubtype(tm, typeActivity)) {//参数1，是不是参数2的子类
                 //如果这次是Activity
                 routeType = RouteType.ACTIVITY;
-            } else if (typeUtils.isSubtype(tm, typeFragment) || typeUtils.isSubtype(tm, typeFragmentV4)) {//fragment有多个版本，这里要兼容
+            } else if (types.isSubtype(tm, typeFragment) || types.isSubtype(tm, typeFragmentV4)) {//fragment有多个版本，这里要兼容
                 //如果这次是Fragment
                 routeType = RouteType.FRAGMENT;
-            } else if (typeUtils.isSubtype(tm, typeProvider)) {
+            } else if (types.isSubtype(tm, typeProvider)) {
                 routeType = RouteType.PROVIDER;
             } else {
                 routeType = RouteType.UNKNOWN;

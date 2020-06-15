@@ -51,12 +51,12 @@ public class LogisticsCenter {
      */
     public static void complete(Postcard postcard) {
         if (null == postcard) {
-            throw new RuntimeException("err:postcard 是空的，怎么搞的？");
+            throw new RuntimeException("err:postcard is null !!!");
         }
 
         RouteMeta routeMeta = Warehouse.routeMap.get(postcard.getPath());//
         if (null == routeMeta) {//如果路由meta是空，说明可能这个路由没注册，也有可能路由表没有去加载到内存中
-            throw new RuntimeException("err:路由寻址失败，请检查是否path写错了");
+            throw new RuntimeException("err:路由寻址失败，请检查是否path写错了:" + postcard.getPath());
         } else {
             postcard.setDestination(routeMeta.getDestination());
             postcard.setRouteType(routeMeta.getRouteType());
