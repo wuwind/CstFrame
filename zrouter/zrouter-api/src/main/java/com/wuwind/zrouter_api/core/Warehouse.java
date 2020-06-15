@@ -4,7 +4,7 @@ package com.wuwind.zrouter_api.core;
 import android.util.Log;
 
 import com.wuwind.zrouter_annotation.facade.model.RouteMeta;
-import com.wuwind.zrouter_api.template.IProvider;
+import com.wuwind.zrouter_annotation.facade.template.IProvider;
 
 import java.util.HashMap;
 import java.util.Map;

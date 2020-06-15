@@ -118,11 +118,13 @@ public class RouterProcessor extends AbstractProcessor {
         TypeMirror typeFragment = elementUtils.getTypeElement(RouteType.FRAGMENT.getClassName()).asType();//
         TypeMirror typeFragmentV4 = elementUtils.getTypeElement(RouteType.FRAGMENT_V4.getClassName()).asType();//
         TypeMirror typeProvider = elementUtils.getTypeElement(RouteType.PROVIDER.getClassName()).asType();//
+        typeProvider = typeUtils.erasure(typeProvider);
         ClassName routeTypeClassName = ClassName.get(RouteType.class);
         RouteType routeType;
         for (Element element : routeElements) {
             ZRoute routeComm = element.getAnnotation(ZRoute.class);//拿到检测到的注解，因为拿到它之后，就能取注解内的参数值
             TypeMirror tm = element.asType();//拿到当前类
+
 
             //这里要进行判断，因为要知道当前使用这个注解的是Activity还是Fragment
             if (typeUtils.isSubtype(tm, typeActivity)) {//参数1，是不是参数2的子类
@@ -136,10 +138,10 @@ public class RouterProcessor extends AbstractProcessor {
             } else {
                 routeType = RouteType.UNKNOWN;
             }
-
+            ClassName className = ClassName.get((TypeElement) element);
             loadPath.addStatement("routeComm.put($S,RouteMeta.getInstance().destination($T.class).routeType($T." + routeType + ").path($S))",
                     routeComm.value(),//如果使用注解的地方写的是@routeComm("test"),那这个routeComm.value的值就是字符串 test
-                    element,//使用这个注解的类
+                    className,//使用这个注解的类
                     routeTypeClassName,
                     routeComm.value());//ZRoute
         }

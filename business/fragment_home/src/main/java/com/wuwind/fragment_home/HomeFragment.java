@@ -14,6 +14,8 @@ import com.wuwind.common.RouterPathConst;
 import com.wuwind.zrouter_annotation.ZRoute;
 import com.wuwind.zrouter_api.ZRouter;
 
+import com.wuwind.business_3.services.api.MineOpenServiceApi;
+
 
 /**
  * 我们的首页Fragment，将会被外壳层app module引用.
@@ -69,7 +71,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 //执行其他模块的业务逻辑
                 //方式1
-//                String accountNo = ZRouter.getInstance().navigation(MineOpenServiceApi.class).accountNo();
+                String accountNo = ZRouter.getInstance().navigation(MineOpenServiceApi.class).accountNo();
 //                Toast.makeText(getActivity(), accountNo, Toast.LENGTH_LONG).show();
 //                //方式2
 //                MineOpenServiceApi api = ZRouter.getInstance().navigation("MineOpenServiceApi");

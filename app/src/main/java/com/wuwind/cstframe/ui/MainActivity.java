@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.wuwind.common.RouterPathConst;
 import com.wuwind.cstframe.R;
 import com.wuwind.cstframe.ui.bottom.BottomAdapter;
@@ -20,16 +23,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@Route(path = "/ar/pa")
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_bottom)
     RecyclerView mRvBottom;
+    @Autowired
+    public String name;
 
     //******************************************  生命周期函数   *******************************
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //初始化Fragment路由的相关参数
+
+        ARouter.getInstance().inject(this);
 
         ZRouter.getInstance().initFragmentParameters(this, R.id.content_frame, new ZRouter.OnFragmentChangedLis() {
             @Override

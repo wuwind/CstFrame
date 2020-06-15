@@ -8,7 +8,7 @@ import com.wuwind.zrouter_annotation.RouterConst;
 import com.wuwind.zrouter_annotation.facade.model.RouteMeta;
 import com.wuwind.zrouter_api.ClassUtils;
 import com.wuwind.zrouter_api.Postcard;
-import com.wuwind.zrouter_api.template.IProvider;
+import com.wuwind.zrouter_annotation.facade.template.IProvider;
 
 import java.util.Set;
 

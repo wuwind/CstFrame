@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         if (!isModule.toBoolean()) {
-            applicationId "study.hank.com.activity_chart"
+            applicationId "com.wuwind.activity_chart"
         }
         minSdkVersion 16
         targetSdkVersion 28

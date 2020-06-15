@@ -41,7 +41,7 @@ public class RouteMeta {
         return this;
     }
 
-    public RouteMeta destination(Class destination) {
+    public RouteMeta destination(Class<?> destination) {
         this.destination = destination;
         return this;
     }

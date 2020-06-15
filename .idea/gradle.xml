@@ -15,11 +15,13 @@
             <option value="$PROJECT_DIR$/business/activity_other" />
             <option value="$PROJECT_DIR$/business/fragment_home" />
             <option value="$PROJECT_DIR$/business/fragment_mine" />
+            <option value="$PROJECT_DIR$/business/fragment_mine_api" />
             <option value="$PROJECT_DIR$/business/fragment_test" />
             <option value="$PROJECT_DIR$/business/fragment_test2" />
             <option value="$PROJECT_DIR$/function" />
             <option value="$PROJECT_DIR$/function/common" />
             <option value="$PROJECT_DIR$/zrouter" />
+            <option value="$PROJECT_DIR$/zrouter/arouter-compiler" />
             <option value="$PROJECT_DIR$/zrouter/zrouter-annotation" />
             <option value="$PROJECT_DIR$/zrouter/zrouter-api" />
             <option value="$PROJECT_DIR$/zrouter/zrouter-compiler" />

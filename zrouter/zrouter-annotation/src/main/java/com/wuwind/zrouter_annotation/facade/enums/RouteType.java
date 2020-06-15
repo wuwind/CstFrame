@@ -9,7 +9,7 @@ public enum RouteType {
     ACTIVITY("android.app.Activity"),
     FRAGMENT("android.app.Fragment"),
     FRAGMENT_V4("android.support.v4.app.Fragment"),
-    PROVIDER("com.wuwind.zrouter_api.template.IProvider"),
+    PROVIDER("com.wuwind.zrouter_annotation.facade.template.IProvider"),
     UNKNOWN("Unknown route type");
 
     private String className;//提供一个全限定类名

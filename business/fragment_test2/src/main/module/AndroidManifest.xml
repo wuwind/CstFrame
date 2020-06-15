@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="study.hank.com.business_2">
+    package="com.wuwind.business_2">
 
     <application
         android:allowBackup="true"

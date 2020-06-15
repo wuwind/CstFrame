@@ -15,7 +15,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [ moduleName : project.getName() ,AROUTER_MODULE_NAME: project.getName()]
 //                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
@@ -49,12 +49,13 @@ dependencies {
     implementation 'com.jakewharton:butterknife-compiler:8.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.1.0'
 
-//    implementation 'com.alibaba:arouter-api:1.5.0'
+    implementation 'com.alibaba:arouter-api:1.5.0'
 //    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 
     implementation project(':function:common')
     implementation project(path: ':zrouter:zrouter-api')
     annotationProcessor project(':zrouter:zrouter-compiler')
+    annotationProcessor project(':zrouter:arouter-compiler')
 
     if (isModule.toBoolean()) {
         implementation project(':business:fragment_home')

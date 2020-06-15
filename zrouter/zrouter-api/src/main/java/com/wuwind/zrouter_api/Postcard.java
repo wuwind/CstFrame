@@ -4,7 +4,7 @@ package com.wuwind.zrouter_api;
 import android.os.Bundle;
 
 import com.wuwind.zrouter_annotation.facade.model.RouteMeta;
-import com.wuwind.zrouter_api.template.IProvider;
+import com.wuwind.zrouter_annotation.facade.template.IProvider;
 
 /**
  * 用于封装 目的地的各种操作，比如跳转Activity，切换Fragment，或者执行 业务模块暴露出来的service
