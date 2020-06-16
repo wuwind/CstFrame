@@ -2,8 +2,7 @@ package com.wuwind.activity_chart;
 
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.wuwind.common.RouterPathConst;
 import com.wuwind.zrouter_annotation.ZRoute;

@@ -2,8 +2,7 @@ package com.wuwind.zrouter_api;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 
 import com.wuwind.zrouter_annotation.facade.model.RouteMeta;
 import com.wuwind.zrouter_annotation.facade.template.IProvider;

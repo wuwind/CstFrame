@@ -5,16 +5,15 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.wuwind.zrouter_api.core.LogisticsCenter;
 import com.wuwind.zrouter_annotation.facade.service.AutowiredService;
+import com.wuwind.zrouter_api.core.LogisticsCenter;
 
 public class ZRouter {
 
