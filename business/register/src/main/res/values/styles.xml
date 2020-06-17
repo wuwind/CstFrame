@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--EditText下划线色值-->
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/color_bb</item>
+        <item name="colorControlActivated">@color/app_theme_color</item>
+    </style>
+
+    <!--帐号单行布局-->
+    <style name="PasswordEdit">
+        <item name="android:digits">@string/num_english_digits</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLength">16</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
+    </style>
+
+    <style name="PassWordImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:cropToPadding">true</item>
+        <item name="android:src">@drawable/selector_bg_not_see</item>
+    </style>
+
+    <style name="BottomLargeRoundBtnStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/selector_blue_btn_bg_shadow</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">@dimen/layout_margin_10</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+</resources>

@@ -11,6 +11,16 @@ include ':business:fragment_test2'
 include ':business:activity_other'
 include ':business:fragment_mine'
 
+include ':LeelenCore'
+project(':LeelenCore').projectDir = new File('../LeelenCore/')
+
+include ':LitepalCore'
+project(':LitepalCore').projectDir = new File('../LitepalCore/')
+
+include ':LeelenCommon'
+project(':LeelenCommon').projectDir = new File('../LeelenCommon/')
+
+
 include_with_api(':business:fragment_mine')
 
 def include_with_api(String moduleName) {
@@ -128,3 +138,5 @@ def include_with_api(String moduleName) {
     //加入 SDK工程
     include ":business:" + "$sdkName"
 }
+include ':business:register'
+include ':business:login'

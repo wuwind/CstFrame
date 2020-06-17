@@ -63,3 +63,6 @@ dependencies {
         implementation project(':business:fragment_test2')
     }
 }
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

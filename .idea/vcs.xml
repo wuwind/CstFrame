@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../LeelenCommon" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../LeelenCore" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../LitepalCore" vcs="svn" />
   </component>
 </project>

@@ -18,6 +18,8 @@
             <option value="$PROJECT_DIR$/business/fragment_mine_api" />
             <option value="$PROJECT_DIR$/business/fragment_test" />
             <option value="$PROJECT_DIR$/business/fragment_test2" />
+            <option value="$PROJECT_DIR$/business/login" />
+            <option value="$PROJECT_DIR$/business/register" />
             <option value="$PROJECT_DIR$/function" />
             <option value="$PROJECT_DIR$/function/common" />
             <option value="$PROJECT_DIR$/zrouter" />
@@ -25,6 +27,9 @@
             <option value="$PROJECT_DIR$/zrouter/zrouter-annotation" />
             <option value="$PROJECT_DIR$/zrouter/zrouter-api" />
             <option value="$PROJECT_DIR$/zrouter/zrouter-compiler" />
+            <option value="$PROJECT_DIR$/../LeelenCommon" />
+            <option value="$PROJECT_DIR$/../LeelenCore" />
+            <option value="$PROJECT_DIR$/../LitepalCore" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
