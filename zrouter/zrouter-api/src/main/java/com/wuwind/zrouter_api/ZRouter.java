@@ -23,6 +23,7 @@ public class ZRouter {
     }
 
     private volatile static ZRouter mInstance;
+    private static boolean hasInit = false;
 
     private static Application mContext;
 
@@ -42,10 +43,13 @@ public class ZRouter {
      * <p>
      * @param context
      */
-    public static void initRegister(Application context) {
+    public static void init(Application context) {
         //注册所有该注册的Activity
-        mContext = context;
-        LogisticsCenter.init(context);//进行Activity，Fragment的统一注册
+        if(!hasInit) {
+            mContext = context;
+            LogisticsCenter.init(context);//进行Activity，Fragment的统一注册
+            hasInit = true;
+        }
     }
 
     /**

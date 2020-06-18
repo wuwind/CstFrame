@@ -20,8 +20,11 @@ project(':LitepalCore').projectDir = new File('../LitepalCore/')
 include ':LeelenCommon'
 project(':LeelenCommon').projectDir = new File('../LeelenCommon/')
 
+include ':business:register'
+include ':business:login'
 
 include_with_api(':business:fragment_mine')
+include_with_api(':business:register')
 
 def include_with_api(String moduleName) {
     include(moduleName)
@@ -43,36 +46,42 @@ def include_with_api(String moduleName) {
         from originDir
         into targetDir
         //拷贝文件
-        include '**/services/api/*.java'
-        include '**/services/api/*.api'
-        include '**/AndroidManifest.xml'
+//        include '**/services/api/*.java'
+        include '**/services/api/**'
+//        include '**/services/api/**.java'
+//        include '**/AndroidManifest.xml'
 //        include 'api.gradle'
     }
     //读取api创建实现类
-    FileTree apis = fileTree(originDir).include("**/services/api/*.java")
+    FileTree apis = fileTree(originDir).include("**/services/api/**")
     apis.each {
         File file ->
-            String implDir = "${file.parentFile.parent}\\impl"
-            String fileName = file.name.replace(".java", "Impl")
-            File newFile = new File(implDir, "${fileName}.java")
-            if (!newFile.exists()) {
-                String pack = implDir.split("\\\\main\\\\java\\\\")[1].replaceAll("\\\\", ".")
-                File dirFile = new File(implDir)
-                if (!dirFile.exists())
-                    dirFile.mkdirs()
-                new File(implDir, "${fileName}.java")
-                        .withPrintWriter {
-                            printWriter ->
-                                printWriter.println("package ${pack};")
-                                printWriter.println("import com.wuwind.zrouter_annotation.ZRoute;")
-                                printWriter.println("import com.wuwind.common.RouterPathConst;")
-                                printWriter.println("import ${pack[0..-5]}api.${file.getName()[0..-6]};\n")
-                                printWriter.println("@ZRoute(RouterPathConst.PATH_PROVIDER_MINE) // 数据交互的Provider，必须用接口SimpleName来注册")
-                                printWriter.println("public class ${fileName} implements ${file.getName()[0..-6]} {\n}")
-                        }
+            System.out.println( "------file.name:"+file.name)
+            String lowercaseName = file.name.toLowerCase();
+            if(!lowercaseName.contains("const") && !lowercaseName.contains("bean")) {
+                String implDir = "${file.parentFile.parent}\\impl"
+                String fileName = file.name.replace(".java", "Impl").replace(".api", "Impl")
+                File newFile = new File(implDir, "${fileName}.java")
+                if (!newFile.exists()) {
+                    String pack = implDir.split("\\\\main\\\\java\\\\")[1].replaceAll("\\\\", ".")
+                    File dirFile = new File(implDir)
+                    if (!dirFile.exists())
+                        dirFile.mkdirs()
+                    new File(implDir, "${fileName}.java")
+                            .withPrintWriter {
+                                printWriter ->
+                                    printWriter.println("package ${pack};")
+                                    printWriter.println("import com.wuwind.zrouter_annotation.ZRoute;")
+                                    printWriter.println("import com.wuwind.common.RouterPathConst;")
+                                    printWriter.println("import ${pack[0..-5]}api.${file.getName()[0..-6]};\n")
+                                    printWriter.println("@ZRoute(RouterPathConst.PATH_PROVIDER_MINE) // 数据交互的Provider，必须用接口SimpleName来注册")
+                                    printWriter.println("public class ${fileName} implements ${file.getName()[0..-6]} {\n}")
+                            }
+                }
             }
             println "${file.getAbsolutePath()[0..-5]}api"
-            file.renameTo("${file.getAbsolutePath()[0..-5]}api")
+            if(lowercaseName.contains(".java"))
+                file.renameTo("${file.getAbsolutePath()[0..-5]}api")
     }
 
     //读取实现模块的manifest并将package的值后加 .api 作为API工程的manifest package
@@ -138,5 +147,4 @@ def include_with_api(String moduleName) {
     //加入 SDK工程
     include ":business:" + "$sdkName"
 }
-include ':business:register'
-include ':business:login'
+

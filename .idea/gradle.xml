@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/business/fragment_test2" />
             <option value="$PROJECT_DIR$/business/login" />
             <option value="$PROJECT_DIR$/business/register" />
+            <option value="$PROJECT_DIR$/business/register_api" />
             <option value="$PROJECT_DIR$/function" />
             <option value="$PROJECT_DIR$/function/common" />
             <option value="$PROJECT_DIR$/zrouter" />

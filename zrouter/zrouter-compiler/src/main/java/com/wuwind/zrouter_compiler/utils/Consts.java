@@ -66,7 +66,7 @@ public class Consts {
             "        ...\n" +
             "        javaCompileOptions {\n" +
             "            annotationProcessorOptions {\n" +
-            "                arguments = [AROUTER_MODULE_NAME: project.getName()]\n" +
+            "                arguments = [moduleName: project.getName()]\n" +
             "            }\n" +
             "        }\n" +
             "    }\n" +
