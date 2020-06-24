@@ -41,11 +41,12 @@ public class ZRouter {
     /**
      * 路由 初始化
      * <p>
+     *
      * @param context
      */
     public static void init(Application context) {
         //注册所有该注册的Activity
-        if(!hasInit) {
+        if (!hasInit) {
             mContext = context;
             LogisticsCenter.init(context);//进行Activity，Fragment的统一注册
             hasInit = true;
@@ -110,11 +111,11 @@ public class ZRouter {
      * @param postcard
      * @return
      */
-    Object navigation(Postcard postcard) {
+    Object navigation(Postcard postcard, AppCompatActivity activity, int requestCode) {
         LogisticsCenter.complete(postcard);//这里拿到的postcard可能是数据不完整的，所以，调用LogisticsCenter的complete方法对属性进行完善，以便于下面的跳转或者其他操作
         switch (postcard.getRouteType()) {
             case ACTIVITY://如果是Activity，那就跳吧
-                return startActivity(postcard);
+                return startActivity(postcard, activity, requestCode);
             case FRAGMENT://如果是Fragment，那就切换吧
                 return switchFragment(postcard);
             case PROVIDER://如果是Provider，那就执行业务逻辑
@@ -163,7 +164,7 @@ public class ZRouter {
         }
     }
 
-    private Object startActivity(Postcard postcard) {
+    private Object startActivity(final Postcard postcard, final AppCompatActivity activity, final int requestCode) {
         Class<?> cls = postcard.getDestination();
         if (cls == null) {
             if (cls == null)
@@ -180,7 +181,11 @@ public class ZRouter {
         runInMainThread(new Runnable() {
             @Override
             public void run() {
-                mContext.startActivity(intent);
+                if (requestCode >= 0) {  // Need start for result
+                    activity.startActivityForResult(intent, requestCode);
+                } else {
+                    mContext.startActivity(intent);
+                }
             }
         });
         return null;

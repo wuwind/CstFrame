@@ -1,10 +1,13 @@
 package com.wuwind.cstframe.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.wuwind.common.RouterPathConst;
 import com.wuwind.cstframe.R;
@@ -34,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //初始化Fragment路由的相关参数
 
-//        ARouter.getInstance().inject(this);
+//        ARouter.getInstance().build("").navigation();
+        ZRouter.getInstance().build(RouterPathConst.PATH_ACTIVITY_OTHER).navigation(this, 123);
 
         ZRouter.getInstance().initFragmentParameters(this, R.id.content_frame, new ZRouter.OnFragmentChangedLis() {
             @Override
@@ -47,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initBottom();
         initContentFrame();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 123) {
+            Log.e("tag", data.getStringExtra("name"));
+        }
     }
 
     @Override

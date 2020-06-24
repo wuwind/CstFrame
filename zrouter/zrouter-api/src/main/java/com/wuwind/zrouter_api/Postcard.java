@@ -3,6 +3,7 @@ package com.wuwind.zrouter_api;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 import com.wuwind.zrouter_annotation.facade.model.RouteMeta;
 import com.wuwind.zrouter_annotation.facade.template.IProvider;
@@ -57,7 +58,11 @@ public class Postcard extends RouteMeta {
      * 开始执行任务，是跳转Activity呢？还是切换Fragment呢？还是 执行业务模块暴露的服务呢。。。
      */
     public Object navigation() {
-        return ZRouter.getInstance().navigation(this);
+        return navigation(null, -1);
+    }
+
+    public Object navigation(AppCompatActivity activity, int requestCode) {
+        return ZRouter.getInstance().navigation(this, activity, requestCode);
     }
 
     /**
